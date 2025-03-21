@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>INFOSPERA - Digital Growth Solutions</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  />
+  <style>
+    :root {
+      --primary: #6366f1;
+      --secondary: #4f46e5;
+      --accent: #f59e0b;
+      --dark: #1e1b4b;
+      --light: #f0f2fd;
+      --text: #334155;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      background: var(--light);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* Book a Call Button in Nav */
+    .btn-call {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .btn-call:hover {
+      background: #d38c06;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 8rem 5%;
+      background: linear-gradient(45deg, var(--light), white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: slideIn 1s forwards;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text);
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+      animation-delay: 0.5s;
+    }
+
+    /* About Section */
+    .about {
+      padding: 5rem 5%;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-grid h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: slideIn 1s forwards;
+    }
+
+    .about-grid p {
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+      animation-delay: 0.5s;
+    }
+
+    .about img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+      animation-delay: 0.8s;
+    }
+
+    /* Mission & Values Section */
+    .mission {
+      background-color: #1f1f2e;
+      color: #fff;
+      padding: 5rem 5%;
+    }
+
+    .mission-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .mission-card {
+      background-color: #2b2c3a;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .mission-card h3,
+    .mission-card h4 {
+      margin-top: 0;
+    }
+
+    .mission-card ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
+    .stat-item h2 {
+      font-size: 2rem;
+      margin: 0;
+      color: #fff;
+    }
+
+    .stat-item p {
+      margin: 0;
+      color: #fff;
+    }
+
+    .about-info h2 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .info-list h3 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-learn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      color: #fff;
+      background: var(--accent);
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .btn-learn:hover {
+      background: #d38c06;
+    }
+
+    /* Big Call-to-Action Section */
+    .big-call-section {
+      padding: 4rem 5%;
+      text-align: center;
+      background: var(--light);
+      margin: 2rem 0;
+    }
+
+    .btn-big-call {
+      background: var(--accent);
+      color: #fff;
+      font-size: 1.5rem;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-big-call:hover {
+      background: #d38c06;
+      transform: scale(1.05);
+    }
+
+    /* NEW: Service Packages Section (Prices Removed) */
+    .service-packages {
+      padding: 5rem 5%;
+      background-color: #1f1f2e;
+      color: #fff;
+      text-align: center;
+    }
+
+    .service-packages h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: slideIn 1s forwards;
+    }
+
+    .service-packages p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+      animation-delay: 0.5s;
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .service-package {
+      background-color: #2b2c3a;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-package:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .package-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .package-header h3 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: #fff;
+    }
+
+    .package-header .badge {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .package-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .package-list li {
+      display: flex;
+      align-items: center;
+      margin: 0.5rem 0;
+      color: #ddd;
+    }
+
+    .package-list li i {
+      color: var(--accent);
+      margin-right: 0.5rem;
+    }
+
+    .btn-package {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .btn-package:hover {
+      background: #d38c06;
+    }
+
+    /* Results Section */
+    .results {
+      padding: 5rem 5%;
+      background: linear-gradient(90deg, #6366f1, #4f46e5);
+      color: #fff;
+      text-align: center;
+    }
+
+    .results-content {
+      margin-bottom: 3rem;
+    }
+
+    .results h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .results p {
+      font-size: 1.1rem;
+      margin: 0 auto;
+      max-width: 600px;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .result-box {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .result-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .result-box h3 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .result-box p {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .result-box small {
+      font-size: 0.9rem;
+      color: #fff;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .mission-container {
+        grid-template-columns: 1fr;
+      }
+      .stats {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+      .packages-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">INFOSPERA</div>
+    <!-- Book a Call Button in Nav -->
+    <a href="https://cal.com/darshit-naulakha-i59u76/15min" target="_blank" class="btn-call">Book a call</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Transform Your Digital Presence</h1>
+    <p>Strategic digital solutions for measurable business growth.</p>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="about-grid">
+      <div>
+        <h2>About Infospera</h2>
+        <p>
+          We're a digital growth agency specializing in helping businesses
+          amplify their online presence. With our data-driven approach and
+          creative solutions, we bridge the gap between brands and their
+          audiences.
+        </p>
+      </div>
+      <img
+        src="https://images.unsplash.com/photo-1552664730-d307ca884978"
+        alt="Our Team"
+      />
+    </div>
+  </section>
+
+  <!-- Mission & Values Section -->
+  <section class="mission">
+    <div class="mission-container">
+      <!-- Left Column: Mission Card -->
+      <div class="mission-card">
+        <h3>Our Mission</h3>
+        <p>
+          At Infospera, we're committed to empowering businesses with
+          cutting-edge digital strategies that drive measurable growth.
+          We believe in transparent, results-driven approaches that make
+          digital marketing accessible to every business.
+        </p>
+
+        <h4>Our Values</h4>
+        <ul>
+          <li>Transparency in all client interactions</li>
+          <li>Data-driven strategies with measurable results</li>
+          <li>Innovative solutions that stay ahead of trends</li>
+          <li>Client success as our primary metric</li>
+        </ul>
+
+        <div class="stats">
+          <div class="stat-item">
+            <h2>95%</h2>
+            <p>Client Retention</p>
+          </div>
+          <div class="stat-item">
+            <h2>100+</h2>
+            <p>Projects Delivered</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: About Infospera Extended -->
+      <div class="about-info">
+        <h2>About Infospera</h2>
+        <p>
+          Founded with a passion for digital excellence, Infospera helps
+          businesses of all sizes establish and grow their online presence
+          through strategic digital marketing services. Our team of experts
+          specializes in SEO, social media management, and custom marketing
+          solutions, delivering tailored solutions that align with your
+          business goals and drive measurable results.
+        </p>
+
+        <div class="info-list">
+          <h3>Expertise You Can Trust</h3>
+          <p>
+            We bring years of combined industry knowledge to every project,
+            ensuring your brand gets the best results.
+          </p>
+        </div>
+
+        <div class="info-list">
+          <h3>Personalized Approach</h3>
+          <p>
+            We don’t believe in one-size-fits-all. Every strategy is
+            tailored to your unique business and goals.
+          </p>
+        </div>
+
+        <div class="info-list">
+          <h3>Transparent Reporting</h3>
+          <p>
+            We provide regular, comprehensive reports so you can see the
+            impact of our work on your bottom line.
+          </p>
+        </div>
+
+        <a class="btn-learn" href="#">
+          Learn More About Our Approach
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Big Call-to-Action Section -->
+  <section class="big-call-section">
+    <a href="https://cal.com/darshit-naulakha-i59u76/15min" target="_blank" class="btn-big-call">Book a Call</a>
+  </section>
+
+  <!-- NEW: Service Packages Section (Prices Removed) -->
+  <section class="service-packages">
+    <h2>Our Service Packages</h2>
+    <p>Choose the perfect plan for your business needs. All packages are customizable to fit your specific requirements.</p>
+
+    <div class="packages-grid">
+      <!-- Essential Package -->
+      <div class="service-package" style="animation-delay: 0.3s;">
+        <div class="package-header">
+          <h3>Essential</h3>
+        </div>
+        <!-- Price section removed -->
+        <ul class="package-list">
+          <li><i class="fas fa-check"></i> SEO Essentials</li>
+          <li><i class="fas fa-check"></i> Basic Social Media Management</li>
+          <li><i class="fas fa-check"></i> 2 Video Edits/Month</li>
+          <li><i class="fas fa-check"></i> Monthly Reporting</li>
+        </ul>
+        <a href="#" class="btn-package">Get Started</a>
+      </div>
+
+      <!-- Professional (Most Popular) Package -->
+      <div class="service-package" style="animation-delay: 0.5s;">
+        <div class="package-header">
+          <h3>Professional</h3>
+          <div class="badge">Most Popular</div>
+        </div>
+        <!-- Price section removed -->
+        <ul class="package-list">
+          <li><i class="fas fa-check"></i> Comprehensive SEO</li>
+          <li><i class="fas fa-check"></i> Social Media Growth</li>
+          <li><i class="fas fa-check"></i> Professional Video Editing</li>
+          <li><i class="fas fa-check"></i> Biweekly Reporting</li>
+          <li><i class="fas fa-check"></i> Social Media Advertising</li>
+        </ul>
+        <a href="#" class="btn-package">Get Started</a>
+      </div>
+
+      <!-- Enterprise Package -->
+      <div class="service-package" style="animation-delay: 0.7s;">
+        <div class="package-header">
+          <h3>Enterprise</h3>
+        </div>
+        <!-- Price section removed -->
+        <ul class="package-list">
+          <li><i class="fas fa-check"></i> Advanced SEO Strategy</li>
+          <li><i class="fas fa-check"></i> Full Social Media Management</li>
+          <li><i class="fas fa-check"></i> Premium Video Editing</li>
+          <li><i class="fas fa-check"></i> Advanced Ad Campaigns</li>
+          <li><i class="fas fa-check"></i> Weekly Strategy Calls</li>
+        </ul>
+        <a href="#" class="btn-package">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="results">
+    <div class="results-content">
+      <h2>Our Results Speak for Themselves</h2>
+      <p>Average improvements our clients experience</p>
+    </div>
+    <div class="results-grid">
+      <div class="result-box">
+        <h3>157%</h3>
+        <p>Traffic Increase</p>
+        <small>Average organic traffic growth</small>
+      </div>
+      <div class="result-box">
+        <h3>89%</h3>
+        <p>Engagement Growth</p>
+        <small>Across social media platforms</small>
+      </div>
+      <div class="result-box">
+        <h3>43%</h3>
+        <p>Conversion Boost</p>
+        <small>From optimized video content</small>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Animate elements when they come into view using IntersectionObserver
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    // Observe hero texts, about content, and each package
+    document.querySelectorAll('.hero h1, .hero p, .about-grid h2, .about-grid p, .about img, .service-package').forEach((el) => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
