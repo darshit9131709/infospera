@@ -14,20 +14,18 @@
   />
   <style>
     :root {
-      --primary: #6366f1;
-      --secondary: #4f46e5;
-      --accent: #f59e0b;
-      --dark: #1e1b4b;
-      --light: #f0f2fd;
-      --text: #334155;
+      /* Unified palette: black, gold, white */
+      --black: #141414;   /* Background color */
+      --gold:  #f5a623;   /* Accent color */
+      --white: #ffffff;   /* Text color */
     }
 
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
-      background: #ffffff;
-      color: var(--text);
+      background: var(--black);
+      color: var(--white);
       overflow-x: hidden;
     }
 
@@ -37,209 +35,353 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 5%;
-      background: var(--light);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      background: var(--black);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
       position: sticky;
       top: 0;
       z-index: 100;
     }
-
     .logo {
       font-size: 1.8rem;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--gold);
+      text-transform: uppercase;
     }
-
-    /* Book a Call Button in Nav */
     .btn-call {
-      background: var(--accent);
-      color: #fff;
+      background: var(--gold);
+      color: var(--white);
       padding: 0.75rem 1.5rem;
       border-radius: 6px;
       text-decoration: none;
       font-weight: 600;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.3s ease;
     }
-
     .btn-call:hover {
-      background: #d38c06;
+      background: #e69b1f;
+      transform: scale(1.05);
     }
 
-    /* Hero Section */
+    /********************************************
+     * HERO SECTION
+     ********************************************/
     .hero {
-      text-align: center;
-      padding: 8rem 5%;
-      background: linear-gradient(45deg, var(--light), white);
-      position: relative;
-      overflow: hidden;
+      background: var(--black);
+      color: var(--white);
+      padding: 5rem 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
     }
-
-    .hero h1 {
+    @media (max-width: 992px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+    .hero-content h1 {
       font-size: 3rem;
-      color: var(--dark);
       margin-bottom: 1rem;
+      line-height: 1.2;
+      animation: zoomIn 1s forwards;
       opacity: 0;
-      animation: slideIn 1s forwards;
     }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: var(--text);
+    .hero-content p {
+      font-size: 1.1rem;
       max-width: 600px;
-      margin: 0 auto;
-      opacity: 0;
+      margin-bottom: 2rem;
       animation: fadeIn 1.5s forwards;
       animation-delay: 0.5s;
+      opacity: 0;
+      line-height: 1.6;
+    }
+    .hero-content span.accent {
+      color: var(--gold);
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .btn-hero-primary,
+    .btn-hero-secondary {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .btn-hero-primary {
+      background: var(--gold);
+      color: var(--white);
+    }
+    .btn-hero-primary:hover {
+      background: #e69b1f;
+      transform: scale(1.05);
+    }
+    .btn-hero-secondary {
+      background: #333;
+      color: var(--white);
+    }
+    .btn-hero-secondary:hover {
+      background: #444;
+      transform: scale(1.05);
     }
 
-    /* About Section */
+    .hero-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.9rem;
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+      animation-delay: 0.8s;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .hero-highlights li {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .hero-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      animation: fadeIn 1.5s forwards;
+      animation-delay: 0.5s;
+      opacity: 0;
+    }
+    .feature-box {
+      background: #1e1e1e;
+      padding: 1.5rem;
+      border-radius: 8px;
+      color: var(--white);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .feature-box h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--gold);
+    }
+    .trusted {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-top: 1rem;
+    }
+
+    /* ABOUT SECTION */
     .about {
       padding: 5rem 5%;
+      background: var(--black);
     }
-
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
       align-items: center;
     }
-
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
     .about-grid h2 {
       text-align: center;
       margin-bottom: 2rem;
       opacity: 0;
       animation: slideIn 1s forwards;
+      color: var(--gold);
     }
-
     .about-grid p {
       opacity: 0;
       animation: fadeIn 1.5s forwards;
       animation-delay: 0.5s;
     }
-
     .about img {
       width: 100%;
       border-radius: 12px;
-      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
       opacity: 0;
       animation: fadeIn 1.5s forwards;
       animation-delay: 0.8s;
     }
 
-    /* Mission & Values Section */
+    /* MISSION & VALUES SECTION */
     .mission {
-      background-color: #1f1f2e;
-      color: #fff;
+      background-color: var(--black);
+      color: var(--white);
       padding: 5rem 5%;
     }
-
     .mission-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
       align-items: start;
     }
-
+    @media (max-width: 768px) {
+      .mission-container {
+        grid-template-columns: 1fr;
+      }
+    }
     .mission-card {
-      background-color: #2b2c3a;
+      background-color: #1e1e1e;
       border-radius: 12px;
       padding: 2rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     }
-
     .mission-card h3,
     .mission-card h4 {
       margin-top: 0;
+      color: var(--gold);
     }
-
+    .mission-card p {
+      color: var(--white);
+    }
     .mission-card ul {
       list-style-type: disc;
       padding-left: 1.5rem;
       margin: 1rem 0;
     }
-
+    .mission-card li {
+      color: var(--white);
+    }
     .stats {
       display: flex;
       justify-content: space-between;
       margin-top: 2rem;
     }
-
     .stat-item h2 {
       font-size: 2rem;
       margin: 0;
-      color: #fff;
+      color: var(--gold);
     }
-
     .stat-item p {
       margin: 0;
-      color: #fff;
+      color: var(--white);
     }
-
     .about-info h2 {
       margin-top: 0;
       margin-bottom: 1rem;
+      color: var(--gold);
     }
-
+    .about-info p {
+      color: var(--white);
+    }
     .info-list h3 {
       margin-top: 1rem;
       margin-bottom: 0.5rem;
+      color: var(--gold);
     }
-
+    .info-list p {
+      color: var(--white);
+    }
     .btn-learn {
       display: inline-block;
       margin-top: 1.5rem;
-      color: #fff;
-      background: var(--accent);
+      color: var(--black);
+      background: var(--gold);
       padding: 0.75rem 1.5rem;
       border-radius: 6px;
       text-decoration: none;
       font-weight: 600;
-      transition: background 0.3s ease;
-    }
-
-    .btn-learn:hover {
-      background: #d38c06;
-    }
-
-    /* Big Call-to-Action Section */
-    .big-call-section {
-      padding: 4rem 5%;
-      text-align: center;
-      background: var(--light);
-      margin: 2rem 0;
-    }
-
-    .btn-big-call {
-      background: var(--accent);
-      color: #fff;
-      font-size: 1.5rem;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 700;
       transition: background 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
     }
-
-    .btn-big-call:hover {
-      background: #d38c06;
+    .btn-learn:hover {
+      background: #e69b1f;
       transform: scale(1.05);
     }
 
-    /* NEW: Service Packages Section (Prices Removed) */
-    .service-packages {
-      padding: 5rem 5%;
-      background-color: #1f1f2e;
-      color: #fff;
+    /* CUSTOM SOLUTION SECTION */
+    .custom-solution {
+      background: var(--black);
+      color: var(--white);
+      padding: 4rem 5%;
       text-align: center;
+      margin: 2rem 0;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+    }
+    .custom-solution-content {
+      max-width: 700px;
+      margin: 0 auto 3rem auto;
+    }
+    .custom-solution-content h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+    .custom-solution-content p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .btn-custom-solution {
+      background: var(--gold);
+      color: var(--black);
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .btn-custom-solution:hover {
+      background: #e69b1f;
+      transform: scale(1.05);
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .benefit-box {
+      background-color: #1e1e1e;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .benefit-box:hover {
+      transform: translateY(-5px);
+    }
+    .benefit-box i {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+    .benefit-box h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--gold);
+    }
+    .benefit-box p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--white);
     }
 
+    /* SERVICE PACKAGES SECTION */
+    .service-packages {
+      padding: 5rem 5%;
+      background-color: var(--black);
+      color: var(--white);
+      text-align: center;
+    }
     .service-packages h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
       opacity: 0;
       animation: slideIn 1s forwards;
+      color: var(--gold);
     }
-
     .service-packages p {
       font-size: 1.1rem;
       max-width: 600px;
@@ -247,245 +389,348 @@
       opacity: 0;
       animation: fadeIn 1.5s forwards;
       animation-delay: 0.5s;
+      color: var(--white);
     }
-
     .packages-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
       margin-top: 3rem;
     }
-
     .service-package {
-      background-color: #2b2c3a;
+      background-color: #1e1e1e;
       border-radius: 12px;
       padding: 2rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
       opacity: 0;
       animation: fadeInUp 1s forwards;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .service-package:hover {
       transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
     }
-
     .package-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 1rem;
     }
-
     .package-header h3 {
       margin: 0;
       font-size: 1.4rem;
-      color: #fff;
+      color: var(--gold);
     }
-
     .package-header .badge {
-      background: var(--accent);
-      color: #fff;
+      background: var(--gold);
+      color: var(--black);
       padding: 0.3rem 0.6rem;
       border-radius: 6px;
       font-size: 0.8rem;
       text-transform: uppercase;
     }
-
     .package-list {
       list-style: none;
       padding: 0;
       margin: 1rem 0 1.5rem;
     }
-
     .package-list li {
       display: flex;
       align-items: center;
       margin: 0.5rem 0;
-      color: #ddd;
+      color: var(--white);
     }
-
     .package-list li i {
-      color: var(--accent);
+      color: var(--gold);
       margin-right: 0.5rem;
     }
-
     .btn-package {
       display: inline-block;
-      background: var(--accent);
-      color: #fff;
+      background: var(--gold);
+      color: var(--black);
       padding: 0.75rem 1.5rem;
       border-radius: 6px;
       text-decoration: none;
       font-weight: 600;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
     }
-
     .btn-package:hover {
-      background: #d38c06;
+      background: #e69b1f;
+      transform: scale(1.05);
     }
 
-    /* Results Section */
+    /* RESULTS SECTION */
     .results {
       padding: 5rem 5%;
-      background: linear-gradient(90deg, #6366f1, #4f46e5);
-      color: #fff;
+      background: var(--black);
+      color: var(--white);
       text-align: center;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
     }
-
     .results-content {
       margin-bottom: 3rem;
     }
-
     .results h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
+      color: var(--gold);
     }
-
     .results p {
       font-size: 1.1rem;
       margin: 0 auto;
       max-width: 600px;
+      color: var(--white);
     }
-
     .results-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
       margin-top: 2rem;
     }
-
+    @media (max-width: 768px) {
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+    }
     .result-box {
-      background: rgba(255, 255, 255, 0.1);
+      background: #1e1e1e;
       border-radius: 12px;
       padding: 2rem;
       transition: transform 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     }
-
     .result-box:hover {
       transform: translateY(-5px);
     }
-
     .result-box h3 {
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
-      color: #fff;
+      color: var(--gold);
     }
-
     .result-box p {
       font-size: 1.2rem;
       margin-bottom: 0.5rem;
       font-weight: 600;
-      color: #fff;
+      color: var(--white);
     }
-
     .result-box small {
       font-size: 0.9rem;
-      color: #fff;
+      color: #ccc;
     }
 
-    /* Animations */
+    /* NEW: PROVEN PROCESS SECTION */
+    .proven-process {
+      background: var(--black);
+      color: var(--white);
+      padding: 5rem 5%;
+      text-align: center;
+    }
+    .process-content {
+      max-width: 700px;
+      margin: 0 auto 3rem auto;
+    }
+    .process-content h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+    .process-content p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      text-align: left;
+    }
+    @media (max-width: 992px) {
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .process-step {
+      background: #1e1e1e;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+    .process-step:hover {
+      transform: translateY(-5px);
+    }
+    .process-step h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      color: var(--gold);
+      font-size: 1.3rem;
+    }
+    .process-step ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+      color: var(--white);
+    }
+    .process-step li {
+      margin: 0.5rem 0;
+    }
+    .process-cta {
+      margin-top: 3rem;
+    }
+    .process-cta h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+    .btn-process-cta {
+      background: var(--gold);
+      color: var(--black);
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .btn-process-cta:hover {
+      background: #e69b1f;
+      transform: scale(1.05);
+    }
+
+    /* MODAL STYLES */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 200;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background: var(--white);
+      margin: 10% auto;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 500px;
+      position: relative;
+      text-align: left;
+      color: var(--black);
+    }
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--black);
+    }
+
+    /* ANIMATIONS */
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateX(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      from { opacity: 0; transform: translateX(-50px); }
+      to   { opacity: 1; transform: translateX(0); }
     }
-
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-
-    @media (max-width: 768px) {
-      .about-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      .mission-container {
-        grid-template-columns: 1fr;
-      }
-      .stats {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-      }
-      .results-grid {
-        grid-template-columns: 1fr;
-      }
-      .packages-grid {
-        grid-template-columns: 1fr;
-      }
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to   { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
 <body>
   <nav>
     <div class="logo">INFOSPERA</div>
-    <!-- Book a Call Button in Nav -->
-    <a href="https://cal.com/darshit-naulakha-i59u76/15min" target="_blank" class="btn-call">Book a call</a>
+    <a
+      href="https://cal.com/darshit-naulakha-i59u76/15min"
+      target="_blank"
+      class="btn-call"
+      >Book a call</a
+    >
   </nav>
 
-  <!-- Hero Section -->
+  <!-- HERO SECTION -->
   <section class="hero">
-    <h1>Transform Your Digital Presence</h1>
-    <p>Strategic digital solutions for measurable business growth.</p>
+    <div class="hero-content">
+      <h1>
+        Elevate Your <span class="accent">Digital</span> Presence <br/>
+        With <span class="accent">Infospera</span>
+      </h1>
+      <p>
+        Expert SEO, social media management, and video editing services tailored
+        to boost your brand’s visibility and engagement.
+      </p>
+      <div class="hero-buttons">
+        <a
+          href="https://cal.com/darshit-naulakha-i59u76/15min"
+          target="_blank"
+          class="btn-hero-primary"
+          >Book a Free Call</a
+        >
+        <a href="#service-packages" class="btn-hero-secondary">Explore Services</a>
+      </div>
+      <ul class="hero-highlights">
+        <li>Results-Driven</li>
+        <li>100% Satisfaction</li>
+        <li>Dedicated Support</li>
+        <li>Transparent Reporting</li>
+      </ul>
+    </div>
+    <div class="hero-features">
+      <div class="feature-box">
+        <h3>SEO</h3>
+        <p>Rank higher on search engines</p>
+      </div>
+      <div class="feature-box">
+        <h3>Social Media</h3>
+        <p>Engage with your audience</p>
+      </div>
+      <div class="feature-box">
+        <h3>Video Editing</h3>
+        <p>Professional video content that converts</p>
+      </div>
+      <div class="trusted">
+        Trusted by 100+ businesses
+      </div>
+    </div>
   </section>
 
-  <!-- About Section -->
+  <!-- ABOUT SECTION -->
   <section class="about">
     <div class="about-grid">
       <div>
         <h2>About Infospera</h2>
         <p>
-          We're a digital growth agency specializing in helping businesses
-          amplify their online presence. With our data-driven approach and
-          creative solutions, we bridge the gap between brands and their
-          audiences.
+          We're a digital growth agency dedicated to amplifying your online presence.
+          Our data-driven strategies and creative solutions bridge the gap between brands and audiences.
         </p>
+        <a class="btn-learn" data-modal="modal-approach">Learn More About Our Approach</a>
       </div>
       <img
-        src="https://images.unsplash.com/photo-1552664730-d307ca884978"
-        alt="Our Team"
+        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        alt="Digital Marketing Agency Team"
       />
     </div>
   </section>
 
-  <!-- Mission & Values Section -->
+  <!-- MISSION & VALUES SECTION -->
   <section class="mission">
     <div class="mission-container">
-      <!-- Left Column: Mission Card -->
       <div class="mission-card">
         <h3>Our Mission</h3>
         <p>
-          At Infospera, we're committed to empowering businesses with
-          cutting-edge digital strategies that drive measurable growth.
-          We believe in transparent, results-driven approaches that make
-          digital marketing accessible to every business.
+          At Infospera, we empower businesses with cutting-edge digital strategies that deliver measurable growth.
+          Our transparent, results-driven approach makes digital marketing accessible for every business.
         </p>
-
         <h4>Our Values</h4>
         <ul>
           <li>Transparency in all client interactions</li>
@@ -493,7 +738,6 @@
           <li>Innovative solutions that stay ahead of trends</li>
           <li>Client success as our primary metric</li>
         </ul>
-
         <div class="stats">
           <div class="stat-item">
             <h2>95%</h2>
@@ -505,83 +749,100 @@
           </div>
         </div>
       </div>
-
-      <!-- Right Column: About Infospera Extended -->
       <div class="about-info">
         <h2>About Infospera</h2>
         <p>
-          Founded with a passion for digital excellence, Infospera helps
-          businesses of all sizes establish and grow their online presence
-          through strategic digital marketing services. Our team of experts
-          specializes in SEO, social media management, and custom marketing
-          solutions, delivering tailored solutions that align with your
-          business goals and drive measurable results.
+          Founded with a passion for digital excellence, Infospera helps businesses establish and grow their online presence
+          through strategic digital marketing services. Our experts specialize in SEO, social media management,
+          and custom marketing solutions that drive real results.
         </p>
-
         <div class="info-list">
           <h3>Expertise You Can Trust</h3>
           <p>
-            We bring years of combined industry knowledge to every project,
-            ensuring your brand gets the best results.
+            We bring years of industry experience to every project, ensuring your brand achieves the best results.
           </p>
         </div>
-
         <div class="info-list">
           <h3>Personalized Approach</h3>
           <p>
-            We don’t believe in one-size-fits-all. Every strategy is
-            tailored to your unique business and goals.
+            No one-size-fits-all solutions—every strategy is tailored specifically for your business.
           </p>
         </div>
-
         <div class="info-list">
           <h3>Transparent Reporting</h3>
           <p>
-            We provide regular, comprehensive reports so you can see the
-            impact of our work on your bottom line.
+            Receive regular, comprehensive reports to track the impact of our strategies on your bottom line.
           </p>
         </div>
-
-        <a class="btn-learn" href="#">
-          Learn More About Our Approach
-        </a>
       </div>
     </div>
   </section>
 
-  <!-- Big Call-to-Action Section -->
-  <section class="big-call-section">
-    <a href="https://cal.com/darshit-naulakha-i59u76/15min" target="_blank" class="btn-big-call">Book a Call</a>
+  <!-- CUSTOM SOLUTION SECTION -->
+  <section class="custom-solution">
+    <div class="custom-solution-content">
+      <h2>Need a Custom Solution?</h2>
+      <p>
+        We understand that every business is unique. Let’s create a tailored package
+        that perfectly aligns with your goals and budget.
+      </p>
+      <a
+        href="https://cal.com/darshit-naulakha-i59u76/15min"
+        target="_blank"
+        class="btn-custom-solution"
+        >Schedule a Free Consultation</a
+      >
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-box">
+        <i class="fas fa-star"></i>
+        <h3>100% Satisfaction</h3>
+        <p>
+          If you’re not completely satisfied, we’ll work to make it right or
+          refund your first month.
+        </p>
+      </div>
+      <div class="benefit-box">
+        <i class="fas fa-handshake"></i>
+        <h3>No Long Contracts</h3>
+        <p>
+          Our packages are month-to-month. Stay because you want to, not
+          because you’re locked in.
+        </p>
+      </div>
+      <div class="benefit-box">
+        <i class="fas fa-bolt"></i>
+        <h3>Rapid Onboarding</h3>
+        <p>
+          Get started quickly with our streamlined process and see results
+          within the first month.
+        </p>
+      </div>
+    </div>
   </section>
 
-  <!-- NEW: Service Packages Section (Prices Removed) -->
-  <section class="service-packages">
+  <!-- SERVICE PACKAGES SECTION -->
+  <section class="service-packages" id="service-packages">
     <h2>Our Service Packages</h2>
-    <p>Choose the perfect plan for your business needs. All packages are customizable to fit your specific requirements.</p>
-
+    <p>Choose the perfect plan for your business needs. All packages are customizable to fit your requirements.</p>
     <div class="packages-grid">
-      <!-- Essential Package -->
       <div class="service-package" style="animation-delay: 0.3s;">
         <div class="package-header">
           <h3>Essential</h3>
         </div>
-        <!-- Price section removed -->
         <ul class="package-list">
           <li><i class="fas fa-check"></i> SEO Essentials</li>
           <li><i class="fas fa-check"></i> Basic Social Media Management</li>
           <li><i class="fas fa-check"></i> 2 Video Edits/Month</li>
           <li><i class="fas fa-check"></i> Monthly Reporting</li>
         </ul>
-        <a href="#" class="btn-package">Get Started</a>
+        <a class="btn-package" data-modal="modal-essential">Learn More</a>
       </div>
-
-      <!-- Professional (Most Popular) Package -->
       <div class="service-package" style="animation-delay: 0.5s;">
         <div class="package-header">
           <h3>Professional</h3>
           <div class="badge">Most Popular</div>
         </div>
-        <!-- Price section removed -->
         <ul class="package-list">
           <li><i class="fas fa-check"></i> Comprehensive SEO</li>
           <li><i class="fas fa-check"></i> Social Media Growth</li>
@@ -589,15 +850,12 @@
           <li><i class="fas fa-check"></i> Biweekly Reporting</li>
           <li><i class="fas fa-check"></i> Social Media Advertising</li>
         </ul>
-        <a href="#" class="btn-package">Get Started</a>
+        <a class="btn-package" data-modal="modal-professional">Learn More</a>
       </div>
-
-      <!-- Enterprise Package -->
       <div class="service-package" style="animation-delay: 0.7s;">
         <div class="package-header">
           <h3>Enterprise</h3>
         </div>
-        <!-- Price section removed -->
         <ul class="package-list">
           <li><i class="fas fa-check"></i> Advanced SEO Strategy</li>
           <li><i class="fas fa-check"></i> Full Social Media Management</li>
@@ -605,12 +863,12 @@
           <li><i class="fas fa-check"></i> Advanced Ad Campaigns</li>
           <li><i class="fas fa-check"></i> Weekly Strategy Calls</li>
         </ul>
-        <a href="#" class="btn-package">Get Started</a>
+        <a class="btn-package" data-modal="modal-enterprise">Learn More</a>
       </div>
     </div>
   </section>
 
-  <!-- Results Section -->
+  <!-- RESULTS SECTION -->
   <section class="results">
     <div class="results-content">
       <h2>Our Results Speak for Themselves</h2>
@@ -620,20 +878,132 @@
       <div class="result-box">
         <h3>157%</h3>
         <p>Traffic Increase</p>
-        <small>Average organic traffic growth</small>
+        <small>Average organic growth</small>
       </div>
       <div class="result-box">
         <h3>89%</h3>
         <p>Engagement Growth</p>
-        <small>Across social media platforms</small>
+        <small>Across social platforms</small>
       </div>
       <div class="result-box">
         <h3>43%</h3>
         <p>Conversion Boost</p>
-        <small>From optimized video content</small>
+        <small>Through optimized content</small>
       </div>
     </div>
   </section>
+
+  <!-- NEW: OUR PROVEN PROCESS SECTION -->
+  <section class="proven-process">
+    <div class="process-content">
+      <h2>Our Proven Process</h2>
+      <p>We follow a structured, transparent approach to ensure your projects succeed from start to finish.</p>
+    </div>
+
+    <div class="process-grid">
+      <!-- Step 1 -->
+      <div class="process-step">
+        <h3>Discovery & Strategy</h3>
+        <ul>
+          <li>Deep Research & Market Analysis</li>
+          <li>Goal Setting & Success Metrics</li>
+          <li>Platform Selection & Target Audience</li>
+          <li>Tailored Content & UI/UX Recommendations</li>
+        </ul>
+      </div>
+      <!-- Step 2 -->
+      <div class="process-step">
+        <h3>Development & Implementation</h3>
+        <ul>
+          <li>Technical Setup & Integrations</li>
+          <li>Website/Platform Development</li>
+          <li>Initial Content Creation & Deployment</li>
+          <li>Quality Assurance & Testing</li>
+        </ul>
+      </div>
+      <!-- Step 3 -->
+      <div class="process-step">
+        <h3>Monitoring & Optimization</h3>
+        <ul>
+          <li>Performance Tracking & Analytics</li>
+          <li>Regular Reporting & Insights</li>
+          <li>Data-Driven Adjustments</li>
+          <li>Ongoing Technical Support</li>
+        </ul>
+      </div>
+      <!-- Step 4 -->
+      <div class="process-step">
+        <h3>Growth & Scaling</h3>
+        <ul>
+          <li>Expansion Strategies & Market Adaptation</li>
+          <li>Advanced Advertising & Brand Building</li>
+          <li>Long-Term Revenue Maximization</li>
+          <li>Agile, Future-Proof Solutions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="process-cta">
+      <h3>Ready to Start Your Digital Journey?</h3>
+      <a
+        href="https://cal.com/darshit-naulakha-i59u76/15min"
+        target="_blank"
+        class="btn-process-cta"
+      >Schedule Your Discovery Call</a>
+    </div>
+  </section>
+
+  <!-- Modal for Approach -->
+  <div id="modal-approach" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3>Our Approach</h3>
+      <p>
+        At Infospera, our approach is rooted in deep analytics and creative innovation.
+        We begin by understanding your brand and audience, then craft custom strategies
+        that blend data-driven insights with creative storytelling.
+        Our end goal is simple—drive growth, enhance engagement, and transform your digital presence.
+      </p>
+    </div>
+  </div>
+
+  <!-- Modal for Essential Package -->
+  <div id="modal-essential" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3>Essential Package Details</h3>
+      <p>
+        Designed for businesses beginning their digital journey, the Essential Package covers SEO basics,
+        fundamental social media management, two monthly video edits, and comprehensive monthly reporting.
+      </p>
+    </div>
+  </div>
+
+  <!-- Modal for Professional Package -->
+  <div id="modal-professional" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3>Professional Package Details</h3>
+      <p>
+        Perfect for expanding brands, our Professional Package offers comprehensive SEO,
+        advanced social media growth strategies, professional video editing, biweekly reporting,
+        and targeted social media advertising.
+      </p>
+    </div>
+  </div>
+
+  <!-- Modal for Enterprise Package -->
+  <div id="modal-enterprise" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3>Enterprise Package Details</h3>
+      <p>
+        Tailored for large enterprises, the Enterprise Package delivers advanced SEO strategies,
+        full-scale social media management, premium video content production, complex ad campaigns,
+        and weekly strategic consultations.
+      </p>
+    </div>
+  </div>
 
   <script>
     // Animate elements when they come into view using IntersectionObserver
@@ -648,9 +1018,42 @@
       { threshold: 0.1 }
     );
 
-    // Observe hero texts, about content, and each package
-    document.querySelectorAll('.hero h1, .hero p, .about-grid h2, .about-grid p, .about img, .service-package').forEach((el) => {
+    // Observe elements for animation
+    document.querySelectorAll(
+      '.hero-content h1, .hero-content p, .hero-highlights, .hero-features, ' +
+      '.about-grid h2, .about-grid p, .about img, ' +
+      '.service-package, .service-packages h2, .service-packages p'
+    ).forEach((el) => {
       observer.observe(el);
+    });
+
+    // Modal functionality
+    const modalButtons = document.querySelectorAll('[data-modal]');
+    const modals = document.querySelectorAll('.modal');
+    const closeButtons = document.querySelectorAll('.close-modal');
+
+    modalButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const modalId = button.getAttribute('data-modal');
+        const modal = document.getElementById(modalId);
+        if(modal) {
+          modal.style.display = 'block';
+        }
+      });
+    });
+
+    closeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.parentElement.parentElement.style.display = 'none';
+      });
+    });
+
+    window.addEventListener('click', (e) => {
+      modals.forEach(modal => {
+        if(e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
     });
   </script>
 </body>
